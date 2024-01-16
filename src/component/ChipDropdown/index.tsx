@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SelectedChips from '../SelectedChips';
 import SelectBox from '../SelectBox';
+import './chipDropdown.css';
 
 /**
  * @component

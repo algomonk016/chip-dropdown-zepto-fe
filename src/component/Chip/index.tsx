@@ -6,8 +6,8 @@ import { generateIdenticon } from '../../util';
 type Props = {
   name: string
 };
-const Chip: React.FC<Props> = (props) => {
 
+const Chip: React.FC<Props> = (props) => {
   const { name } = props;
 
   const identicon = generateIdenticon(name);

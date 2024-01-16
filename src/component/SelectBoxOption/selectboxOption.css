@@ -1,5 +1,19 @@
+.select-box-option {
+  display: flex;
+  align-items: center;
+}
+
+.select-option-name {
+  font-size: 12px;
+  margin: 0px 10px;
+}
+.select-option-email {
+  font-size: 10px;
+  color: silver;
+}
+
 .select-box-option-image {
-  height: 15px;
-  width: 15px;
-  border-radius: 7px;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
 }

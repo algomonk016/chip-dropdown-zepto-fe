@@ -1,0 +1,10 @@
+.chip-dropdown {
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+  padding: 2px 4px;
+  border-bottom: 1.5px solid rgb(36, 137, 192);
+  margin: 5px;
+  flex-wrap: wrap;
+  width: 80%;
+}

@@ -14,10 +14,12 @@ const SelectBoxOption: React.FC<Props> = (props) => {
   const identicon = generateIdenticon(name);
 
   return (
-    <div>
+    <div className='select-box-option'>
       <img src={identicon} alt={`${name}-option`} className='select-box-option-image' />
-      <span>{name}</span>
-      <span>{email}</span>
+      <span>
+        <span className='select-option-name'>{name}</span>
+        <span className='select-option-email'>{email}</span>
+      </span>
     </div>
   )
 }

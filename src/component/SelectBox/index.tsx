@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DropdownOption, DropdownOptions } from "../ChipDropdown";
 import SelectBoxOption from "../SelectBoxOption";
+import './selectBox.css';
 
 /**
  * Types
@@ -30,6 +31,9 @@ const SelectBox: React.FC<Props> = (props) => {
 
   const [selectBoxStatus, setSelectBoxStaus] = useState<"show" | "hide">("hide");
 
+  /**
+   * @description filter dropdown option on options, selected options update
+   */
   useEffect(() => {
     const dropdownOptions = options
       .filter((option) => !selectedOptions.includes(option))
@@ -53,7 +57,11 @@ const SelectBox: React.FC<Props> = (props) => {
     const { key } = e;
     if(key === Keys.esc) {
       hideSelectBox();
-    } else if (key === Keys.enter) {
+      return;
+    }
+    showSelectBox();
+
+    if (key === Keys.enter) {
       if(dropdownOptions.length > 0) {
         selectOption(dropdownOptions[0]);
       }
@@ -67,15 +75,16 @@ const SelectBox: React.FC<Props> = (props) => {
       if (pressedBackSpace) {
         removeLastOption();
         pressedBackSpace = false;
+      } else {
+        pressedBackSpace = true;
       }
-      pressedBackSpace = true;
     }
   };
 
   /**
    * input field focus handlers
    */
-  const handleFocus = () => {
+  const showSelectBox = () => {
     setSelectBoxStaus("show");
   }
   const hideSelectBox = () => {
@@ -83,23 +92,31 @@ const SelectBox: React.FC<Props> = (props) => {
   }
 
   return (
-    <div>
+    <div className="select-box-container">
       <input
         type="text"
         onKeyDown={handleKeyDown}
         onChange={(e) => setSearchedText(e.target.value.trim())}
-        onFocus={handleFocus}
+        onFocus={showSelectBox}
+        className="input-field"
+        placeholder="Search here"
       />
 
-      <div>
+      <div className="options-container" style={{
+        display: selectBoxStatus === "show" ? "flex" : "none"
+      }} >
         {selectBoxStatus === "show" && dropdownOptions.map((option, index) => {
           const key = `select-box-option-${option.email}-${index}`;
           return (
             <button key={key} onClick={() => selectOption(option)}>
-              <SelectBoxOption option={option} />;
+              <SelectBoxOption option={option} />
             </button>
           );
         })}
+
+        {selectBoxStatus === "show" && dropdownOptions.length === 0 && 
+          <span className="no-options-text"> No Options Left </span>
+        }
       </div>
     </div>
   );

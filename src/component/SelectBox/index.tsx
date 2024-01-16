@@ -3,14 +3,32 @@ import { DropdownOption, DropdownOptions } from "../ChipDropdown";
 import SelectBoxOption from "../SelectBoxOption";
 
 /**
+ * Types
+ */
+type Props = {
+  options: DropdownOptions;
+  selectedOptions: DropdownOptions;
+  selectOption: (option: DropdownOption) => void;
+  removeLastOption: () => void;
+};
+
+enum Keys {
+  esc = "Escape",
+  enter = "Enter",
+  backspace = "Backspace"
+}
+
+/**
  * @component
  * Renders search field and dropdowns
  */
 const SelectBox: React.FC<Props> = (props) => {
-  const { options, selectedOptions, removeLastOption } = props;
-
+  const { options, selectedOptions, removeLastOption, selectOption } = props;
+  let pressedBackSpace: boolean = false;
   const [searchedText, setSearchedText] = useState<string>("");
   const [dropdownOptions, setDropdownOptions] = useState<DropdownOptions>([]);
+
+  const [selectBoxStatus, setSelectBoxStaus] = useState<"show" | "hide">("hide");
 
   useEffect(() => {
     const dropdownOptions = options
@@ -25,17 +43,28 @@ const SelectBox: React.FC<Props> = (props) => {
     setDropdownOptions(dropdownOptions);
   }, [options, selectedOptions, searchedText]);
 
-  let pressedBackSpace: boolean = false;
+  /**
+   * @function handles `Enter`, `Escape` and `Backspace` key press
+   * @argument keydown event
+   * @description selects first option from select box on `Enter`
+   * removes last selected option when pressed two `Backspaces`
+  */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = e;
-    if (key === "Enter") {
+    if(key === Keys.esc) {
+      hideSelectBox();
+    } else if (key === Keys.enter) {
+      if(dropdownOptions.length > 0) {
+        selectOption(dropdownOptions[0]);
+      }
     }
 
-    if (key !== "Backspace") pressedBackSpace = false;
-
-    if (key === "Backspace" && !searchedText) {
+    /**
+     * handle `backspace`
+     */
+    if (key !== Keys.backspace) pressedBackSpace = false;
+    if (key === Keys.backspace && !searchedText) {
       if (pressedBackSpace) {
-        console.log("remove top");
         removeLastOption();
         pressedBackSpace = false;
       }
@@ -43,9 +72,15 @@ const SelectBox: React.FC<Props> = (props) => {
     }
   };
 
-  const selectOption = (option: DropdownOption) => {
-    props.selectOption(option);
-  };
+  /**
+   * input field focus handlers
+   */
+  const handleFocus = () => {
+    setSelectBoxStaus("show");
+  }
+  const hideSelectBox = () => {
+    setSelectBoxStaus("hide");
+  }
 
   return (
     <div>
@@ -53,10 +88,11 @@ const SelectBox: React.FC<Props> = (props) => {
         type="text"
         onKeyDown={handleKeyDown}
         onChange={(e) => setSearchedText(e.target.value.trim())}
+        onFocus={handleFocus}
       />
 
       <div>
-        {dropdownOptions.map((option, index) => {
+        {selectBoxStatus === "show" && dropdownOptions.map((option, index) => {
           const key = `select-box-option-${option.email}-${index}`;
           return (
             <button key={key} onClick={() => selectOption(option)}>
@@ -67,17 +103,6 @@ const SelectBox: React.FC<Props> = (props) => {
       </div>
     </div>
   );
-};
-
-/**
- * Types
- */
-
-type Props = {
-  options: DropdownOptions;
-  selectedOptions: DropdownOptions;
-  selectOption: (option: DropdownOption) => void;
-  removeLastOption: () => void;
 };
 
 export default SelectBox;

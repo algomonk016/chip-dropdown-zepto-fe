@@ -16,7 +16,9 @@ type Props = {
 enum Keys {
   esc = "Escape",
   enter = "Enter",
-  backspace = "Backspace"
+  backspace = "Backspace",
+  down = "ArrowDown",
+  up = "ArrowUp"
 }
 
 /**
@@ -30,7 +32,9 @@ const SelectBox: React.FC<Props> = (props) => {
   const [dropdownOptions, setDropdownOptions] = useState<DropdownOptions>([]);
 
   const [selectBoxStatus, setSelectBoxStaus] = useState<"show" | "hide">("hide");
+  const [activeOptionIndex, setActiveOptionIndex] = useState<number>(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownOptionRef = useRef<HTMLButtonElement>(null);
 
   /**
    * @description filter dropdown option on options, selected options update
@@ -46,7 +50,12 @@ const SelectBox: React.FC<Props> = (props) => {
       );
 
     setDropdownOptions(dropdownOptions);
+    setActiveOptionIndex(0);
   }, [options, selectedOptions, searchedText]);
+
+  useEffect(() => {
+    dropdownOptionRef.current?.focus();
+  }, [activeOptionIndex])
 
   const handleKeyPress = useCallback((event: any) => {
     if(event.metaKey && event.keyCode === 75) {
@@ -55,6 +64,14 @@ const SelectBox: React.FC<Props> = (props) => {
       showSelectBox();
     } else if(event.key === Keys.esc) {
       hideSelectBox();
+    } else if(event.key === Keys.down) {
+      if(selectBoxStatus === "show" && dropdownOptions.length > 0) {
+        setActiveOptionIndex(activeOptionIndex => (activeOptionIndex + 1) % dropdownOptions.length)
+      }
+    } else if(event.key === Keys.up) {
+      if(selectBoxStatus === "show" && dropdownOptions.length > 0) {
+        setActiveOptionIndex(activeOptionIndex => (activeOptionIndex - 1 + dropdownOptions.length) % dropdownOptions.length)
+      } 
     }
   }, []);
 
@@ -138,8 +155,9 @@ const SelectBox: React.FC<Props> = (props) => {
       }} >
         {selectBoxStatus === "show" && dropdownOptions.map((option, index) => {
           const key = `select-box-option-${option.email}-${index}`;
+          const buttonRef = activeOptionIndex === index ? dropdownOptionRef : null;
           return (
-            <button key={key} onClick={() => selectOptionWrapper(option)}>
+            <button ref={buttonRef} key={key} onClick={() => selectOptionWrapper(option)}>
               <SelectBoxOption option={option} highlightText={searchedText} />
             </button>
           );

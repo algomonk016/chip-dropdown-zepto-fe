@@ -109,7 +109,7 @@ const SelectBox: React.FC<Props> = (props) => {
           const key = `select-box-option-${option.email}-${index}`;
           return (
             <button key={key} onClick={() => selectOption(option)}>
-              <SelectBoxOption option={option} />
+              <SelectBoxOption option={option} highlightText={searchedText} />
             </button>
           );
         })}

@@ -83,6 +83,7 @@ const SelectBox: React.FC<Props> = (props) => {
 
     if (key === Keys.enter) {
       if(dropdownOptions.length > 0) {
+        setSearchedText('');
         selectOption(dropdownOptions[0]);
       }
     }
@@ -100,6 +101,11 @@ const SelectBox: React.FC<Props> = (props) => {
       }
     }
   };
+
+  const selectOptionWrapper = (option: DropdownOption) => {
+    setSearchedText("");
+    selectOption(option);
+  }
 
   /**
    * input field focus handlers
@@ -124,6 +130,7 @@ const SelectBox: React.FC<Props> = (props) => {
         className="input-field"
         placeholder="Search here"
         ref={inputRef}
+        value={searchedText}
       />
 
       <div className="options-container" style={{
@@ -132,7 +139,7 @@ const SelectBox: React.FC<Props> = (props) => {
         {selectBoxStatus === "show" && dropdownOptions.map((option, index) => {
           const key = `select-box-option-${option.email}-${index}`;
           return (
-            <button key={key} onClick={() => selectOption(option)}>
+            <button key={key} onClick={() => selectOptionWrapper(option)}>
               <SelectBoxOption option={option} highlightText={searchedText} />
             </button>
           );

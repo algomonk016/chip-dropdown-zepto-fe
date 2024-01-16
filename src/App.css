@@ -23,3 +23,10 @@ section ul li {
   line-height: 25px ;
   letter-spacing: 0.2px;
 }
+
+section ul li span {
+  background-color: rgb(69, 69, 69);
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+}

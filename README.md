@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+<p align="center">
+<img 
+    src="https://github.com/algomonk016/chip-dropdown-zepto-fe/assets/55861951/82d0a9f9-cd7b-4805-99ac-94e3b94f4d41"
+    width="100px" 
+    height="40px"
+    alt="Zepto Logo" 
+    style="border-radius: 10px; object-fit: cover"
+  >
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2 align="center">
+  <a href="https://algomonk016.github.io/chip-dropdown-zepto-fe/" >Chip Dropdown</a> 
+</h2>
 
-## Available Scripts
 
-In the project directory, you can run:
+<div style="display: flex; width: 100%;">
+  <div style="flex: 1; padding-right: 5px;">
+    <video controls width="100%">
+      <source src="https://github.com/algomonk016/chip-dropdown-zepto-fe/assets/55861951/17edecc4-7328-42c9-913a-751dd9d3dc0c" type="video/mp4">
+    </video>
+  </div>
+  <div style="flex: 1; padding-left: 5px;">
+    <video controls width="100%">
+      <source src="https://github.com/algomonk016/chip-dropdown-zepto-fe/assets/55861951/43f5687e-2f08-4c23-8794-1d56828a4ad6" type="video/mp4">
+    </video>
+  </div>
+</div>
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Specifications
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Clicking on the input field should display a list of items.
+- As you type, the list should dynamically filter to show only items matching your input.
+- Clicking on an item should turn it into a chip at the top, with the input field adjusting automatically.
+- Once an item becomes a chip, it should be removed from the list.
+- Each chip should have an "X" icon, allowing users to remove the chip and add the item back to the list.
 
-### `yarn test`
+## Bonus Task
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Implement clean and well-documented code.
+- Utilize TypeScript for enhanced type safety.
+- When the input is blank and the user presses backspace, the last chip (e.g., Nick Giannopoulos) should be highlighted. Pressing backspace again should remove the highlighted chip.
 
-### `yarn build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To see the chip dropdown in action, visit [Chip Dropdown Demo](https://algomonk016.github.io/chip-dropdown-zepto-fe/).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clone the repository: `git clone https://github.com/algomonk016/chip-dropdown-zepto-fe.git`
+2. Install dependencies: `npm install`
+3. Run the project: `npm start`

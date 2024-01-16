@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/chip-dropdown-zepto-fe/static/css/main.ad44fd27.css",
+    "main.js": "/chip-dropdown-zepto-fe/static/js/main.a1c44951.js",
+    "static/js/787.31f1c5f3.chunk.js": "/chip-dropdown-zepto-fe/static/js/787.31f1c5f3.chunk.js",
+    "index.html": "/chip-dropdown-zepto-fe/index.html",
+    "main.ad44fd27.css.map": "/chip-dropdown-zepto-fe/static/css/main.ad44fd27.css.map",
+    "main.a1c44951.js.map": "/chip-dropdown-zepto-fe/static/js/main.a1c44951.js.map",
+    "787.31f1c5f3.chunk.js.map": "/chip-dropdown-zepto-fe/static/js/787.31f1c5f3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ad44fd27.css",
+    "static/js/main.a1c44951.js"
+  ]
+}

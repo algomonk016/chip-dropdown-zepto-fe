@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <ul>
           Keyboard functions
           <li>
-            <span>Cmd/Ctrl + K to focus on input field and show dropdown </span>
+            <span>Cmd/Ctrl + K</span> to focus on input field and show dropdown 
           </li>
 
           <li>
@@ -28,7 +28,7 @@ const App: React.FC = () => {
           </li>
 
           <li>
-            <span>Backspace</span> to delete last selected option
+            <span>Consecutive Backspaces</span> to delete last selected option
           </li>
         </ul>
       </section>

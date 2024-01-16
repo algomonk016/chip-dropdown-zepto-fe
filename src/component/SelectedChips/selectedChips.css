@@ -3,6 +3,7 @@
   align-items: center;
   gap: 5px;
   flex-wrap: wrap;
+  margin: 2px 0px;
 }
 
 .chip {

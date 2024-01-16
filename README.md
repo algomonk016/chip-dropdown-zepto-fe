@@ -13,20 +13,6 @@
 </h2>
 
 
-<div style="display: flex; width: 100%;">
-  <div style="flex: 1; padding-right: 5px;">
-    <video controls width="100%">
-      <source src="https://github.com/algomonk016/chip-dropdown-zepto-fe/assets/55861951/17edecc4-7328-42c9-913a-751dd9d3dc0c" type="video/mp4">
-    </video>
-  </div>
-  <div style="flex: 1; padding-left: 5px;">
-    <video controls width="100%">
-      <source src="https://github.com/algomonk016/chip-dropdown-zepto-fe/assets/55861951/43f5687e-2f08-4c23-8794-1d56828a4ad6" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-
 ## Specifications
 
 - Clicking on the input field should display a list of items.
@@ -34,9 +20,18 @@
 - Clicking on an item should turn it into a chip at the top, with the input field adjusting automatically.
 - Once an item becomes a chip, it should be removed from the list.
 - Each chip should have an "X" icon, allowing users to remove the chip and add the item back to the list.
+- Navigate through dropdown options using Arrow Up/Down keys
+- Focus on input field using `Cmd + K` in mac or `Ctrl + K` in windows
+
+![chip-dropdown-1](https://github.com/algomonk016/chip-dropdown-zepto-fe/assets/55861951/bdb2ac59-8158-4bc4-9b0c-6364e52a487a)
+
+![chip-dropdown-2](https://github.com/algomonk016/chip-dropdown-zepto-fe/assets/55861951/214dc430-d7d4-464a-be30-292743e36197)
+
+![chip-dropdown-3](https://github.com/algomonk016/chip-dropdown-zepto-fe/assets/55861951/a6f7b8df-2955-460b-90ff-5ac51f051f77)
+
+
 
 ## Bonus Task
-
 - Implement clean and well-documented code.
 - Utilize TypeScript for enhanced type safety.
 - When the input is blank and the user presses backspace, the last chip (e.g., Nick Giannopoulos) should be highlighted. Pressing backspace again should remove the highlighted chip.

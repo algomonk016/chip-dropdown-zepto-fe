@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { DropdownOption, DropdownOptions } from "../ChipDropdown";
 import SelectBoxOption from "../SelectBoxOption";
 import './selectBox.css';
@@ -30,6 +30,7 @@ const SelectBox: React.FC<Props> = (props) => {
   const [dropdownOptions, setDropdownOptions] = useState<DropdownOptions>([]);
 
   const [selectBoxStatus, setSelectBoxStaus] = useState<"show" | "hide">("hide");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   /**
    * @description filter dropdown option on options, selected options update
@@ -47,6 +48,26 @@ const SelectBox: React.FC<Props> = (props) => {
     setDropdownOptions(dropdownOptions);
   }, [options, selectedOptions, searchedText]);
 
+  const handleKeyPress = useCallback((event: any) => {
+    if(event.metaKey && event.keyCode === 75) {
+      showSelectBox();
+    } else if (event.ctrlKey && event.keyCode === 75) {
+      showSelectBox();
+    } else if(event.key === Keys.esc) {
+      hideSelectBox();
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [handleKeyPress]);
+
+
+
   /**
    * @function handles `Enter`, `Escape` and `Backspace` key press
    * @argument keydown event
@@ -56,7 +77,6 @@ const SelectBox: React.FC<Props> = (props) => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { key } = e;
     if(key === Keys.esc) {
-      hideSelectBox();
       return;
     }
     showSelectBox();
@@ -85,6 +105,9 @@ const SelectBox: React.FC<Props> = (props) => {
    * input field focus handlers
    */
   const showSelectBox = () => {
+    if(!!inputRef && !!inputRef.current) {
+      inputRef.current?.focus();
+    }
     setSelectBoxStaus("show");
   }
   const hideSelectBox = () => {
@@ -100,6 +123,7 @@ const SelectBox: React.FC<Props> = (props) => {
         onFocus={showSelectBox}
         className="input-field"
         placeholder="Search here"
+        ref={inputRef}
       />
 
       <div className="options-container" style={{

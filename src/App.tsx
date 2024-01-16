@@ -4,8 +4,34 @@ import ChipDropdown, { DropdownOptions } from './component/ChipDropdown';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <ChipDropdown options={dropdownOptions} />
+    <div className='container'>
+      <section>
+        <h3>
+          Chip Dropdown
+        </h3>
+        <ChipDropdown options={dropdownOptions} />
+      </section>
+
+      <section>
+        <ul>
+          Keyboard functions
+          <li>
+            <span>Cmd/Ctrl + K to focus on input field and show dropdown </span>
+          </li>
+
+          <li>
+            <span>Esc</span> to hide dropdown
+          </li>
+
+          <li>
+            <span>Enter</span> to select first option from dropdown
+          </li>
+
+          <li>
+            <span>Backspace</span> to delete last selected option
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

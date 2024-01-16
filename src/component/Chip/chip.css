@@ -1,0 +1,23 @@
+.chip {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chip-image {
+  height: 18px;
+  width: 18px;
+  border-radius: 10px;
+}
+
+.chip-text {
+  font-size: 11px;
+  margin: 0px 5px;
+  color: rgb(64, 64, 64);
+}
+
+.chip-remove-icon {
+  margin-right: 5px;
+  height: 8px;
+  width: 8px;
+}
